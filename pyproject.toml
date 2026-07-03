@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "webability-python"
+version = "0.0.1"
+description = "Cliente oficial en Python para la API pública de WebAbility (https://api.webability.info)."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Philippe Thomassigny" }]
+requires-python = ">=3.9"
+keywords = ["webability", "api", "dns", "mail", "image"]
+
+[project.urls]
+Homepage = "https://github.com/webability/webability-python"
+Repository = "https://github.com/webability/webability-python"
+
+[tool.setuptools.packages.find]
+include = ["webability_api*"]
