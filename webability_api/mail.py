@@ -47,12 +47,13 @@ class SendRequest:
     # servidor arma el correo con esa plantilla en vez de subject/html/text
     # (que se ignoran si template viene). La personalización usa las vars de
     # `to`, sin ningún prefijo en los nombres — dentro del contenido de la
-    # plantilla (Consola → Correos → Plantillas) se acceden como
-    # {{vars>clave}}, no {{clave}} a secas (eso último solo aplica al envío
-    # ad-hoc, sin template). El servidor valida que la plantilla exista y
-    # esté activa ANTES de encolar el correo: si no, send() lanza
-    # ApiError con el error de la API (códigos 3025/3026), no un envío
-    # "pending" fallido.
+    # plantilla (Consola → Correos → Plantillas) se acceden exactamente
+    # igual que en el envío ad-hoc: {{clave}} directo. La plantilla solo ve
+    # las vars, nunca el resto del mensaje (to, from, subject, etc.) — si
+    # necesitas imprimir alguno de esos datos dentro del cuerpo, agrégalo
+    # también a vars. El servidor valida que la plantilla exista y esté
+    # activa ANTES de encolar el correo: si no, send() lanza ApiError con
+    # el error de la API (códigos 3025/3026), no un envío "pending" fallido.
     template: str = ""
     tags: list[str] = field(default_factory=list)
     track_opens: bool = False
