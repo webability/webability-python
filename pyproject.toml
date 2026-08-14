@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "webability-python"
-version = "0.0.1"
+version = "0.1.0"
 description = "Cliente oficial en Python para la API pública de WebAbility (https://api.webability.info)."
 readme = "README.md"
 license = { text = "MIT" }
