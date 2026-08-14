@@ -39,9 +39,18 @@ class SendRequest:
 
     from_: Address
     to: Recipient
-    subject: str
+    subject: str = ""
     html: str = ""
     text: str = ""
+    # Si viene (no vacío), es el id de una plantilla ya registrada y activa
+    # en templates_template bajo la cuenta que autentica el request — el
+    # servidor arma el correo con esa plantilla en vez de subject/html/text
+    # (que se ignoran si template viene). La personalización usa las vars de
+    # `to`, igual que en el envío ad-hoc. El servidor valida que la plantilla
+    # exista y esté activa ANTES de encolar el correo: si no, send() lanza
+    # ApiError con el error de la API (códigos 3025/3026), no un envío
+    # "pending" fallido.
+    template: str = ""
     tags: list[str] = field(default_factory=list)
     track_opens: bool = False
     track_clicks: bool = False
